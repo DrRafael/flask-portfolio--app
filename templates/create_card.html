@@ -4,39 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Дневник программиста</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Developer Journal - New Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <header class="header">
-        <img src="../static/img/logo.svg" alt="logo" width="30" height="30">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo" width="30" height="30">
         <ul class="main-list">
             <li class="list__item">
-              <a href="">
-                <img src="../static/img/login.svg" alt="login" width="20" height="20">
-              </a>
+                <a href="{{ url_for('login') }}">
+                    <img src="{{ url_for('static', filename='img/login.svg') }}" alt="login" width="20" height="20">
+                </a>
+            </li>
         </ul>
-      </header>
-      <main>
+    </header>
+
+    <main>
         {% block content %}
-        <form action="{{ url_for('form_create') }}" method="post" class="creat-form">
-            <div class="form__card">
-                <img class="card__img" src="../static/img/post_icon.png" width="250" height="250" alt="post_icon">
+        <form action="{{ url_for('create') }}" method="POST" class="creat-form">
+            <div class="form_card">
+                <img class="card_img" src="{{ url_for('static', filename='img/post_icon.png') }}" width="250" height="250" alt="post_icon">
                 <div class="form__inputs">
                     <label for="title">
-                        <input class="form__input" type="text" name="title" id="title" placeholder="Введите заголовок" required>
+                        <input class="form__input" type="text" name="title" id="title" placeholder="Enter title..." required>
                     </label>
                     <label for="subtitle">
-                        <input class="form__input" type="text" name="subtitle" id="subtitle" placeholder="Введите подзаголовок" required>
+                        <input class="form__input" type="text" name="subtitle" id="subtitle" placeholder="Enter subtitle..." required>
                     </label>
                 </div>
                 <label for="text">
-                    <textarea class="form__text" name="text" id="text" cols="30" rows="10" required placeholder="Напишите что-нибудь..."></textarea>
+                    <textarea class="form__text" name="text" id="text" cols="30" rows="10" placeholder="Write your post content here..." required></textarea>
                 </label>
-                <button class="form__button">Создать</button>
+                <button class="form__button" type="submit">Create Entry</button>
             </div>
         </form>
         {% endblock %}
-      </main>
+    </main>
 </body>
 </html>
