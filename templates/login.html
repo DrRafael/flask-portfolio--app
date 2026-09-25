@@ -4,37 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Дневник программиста</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Developer Journal - Sign In</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <header class="header">
-        <img src="../static/img/logo.svg" alt="logo" width="30" height="30">
-        <ul class="main-list">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo" width="30" height="30">
+        <ul class="main-list"></ul>
+    </header>
 
-        </ul>
-      </header>
-      <main class="main-login">
+    <main class="main-login">
         {% block content %}
         <form action="{{ url_for('login') }}" method="POST" class="login">
-            <p class="error">{{error}}</p>
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
 
-            <!-- Задание №2. Создать поля для логина -->
-          <label for="email">
-              <input class="form__input" type="email" name="email" id="email" placeholder="Введите e-mail" required>
-          </label>
+            <label for="email">
+                <input class="form__input" type="email" name="email" id="email" placeholder="Enter your email" required>
+            </label>
 
-          <label for="password">
-                <input class="form__input" type="password" name="password" id="password" placeholder="Введите свой пароль" required>
-          </label>
+            <label for="password">
+                <input class="form__input" type="password" name="password" id="password" placeholder="Enter your password" required>
+            </label>
 
-
-
-            <!--  -->
-                <button class="form__button">Войти</button>
-                <a href="/reg" class="form__button reg__link">Зарегистрироваться</a>
+            <button class="form__button" type="submit">Sign In</button>
+            <a href="{{ url_for('reg') }}" class="form__button reg_link">Register</a>
         </form>
         {% endblock %}
-      </main>
+    </main>
 </body>
 </html>
